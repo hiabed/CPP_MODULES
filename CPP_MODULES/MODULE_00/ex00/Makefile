@@ -1,10 +1,23 @@
-NAME = megaphone;
+NAME = megaphone
 
-CC = c++
+CC = g++
 
 CFLAGS = -Wall -Wextra -Werror
 
-CFILES = megaphone.c \
+CFILES = megaphone.cpp \
 
-all:
-	${CC} ${CFLAGS} ${CFILES} -o ${NAME}
+OBJ = ${CFILES:.cpp=.o}
+
+all: ${NAME}
+
+${NAME}: ${OBJ}
+	${CC} ${CFLAGS} ${OBJ} -o ${NAME}
+
+clean:
+	rm -f ${OBJ}
+
+fclean: clean
+	rm -f ${NAME}
+
+re: fclean all
+

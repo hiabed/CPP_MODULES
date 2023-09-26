@@ -5,15 +5,13 @@
 
 class Contact
 {
+public:
+	int index;
 	std::string	FirstName;
 	std::string	LastName;
 	std::string	NickName;
 	int	PhoneNumber;
 	std::string	DarkestSecret;
-	void	AddContact(std::string FirstName, std::string LastName, std::string NickName, int PhoneNumber, std::string DarkestSecret)
-	{
-		
-	}
 };
 
 class PhoneBook
@@ -26,6 +24,5 @@ class PhoneBook
 // {
 
 // }
-
 
 #endif

@@ -2,7 +2,7 @@ NAME = phonebook
 
 CC = g++
 
-CFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -std=c++98
 
 CFILES = PhoneBook.cpp main.cpp\
 

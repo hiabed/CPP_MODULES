@@ -12,7 +12,7 @@ int main()
 	std::string DarkestSecret;
 	int i = 0;
 	int k = 0;
-	char *CheckIndex;
+	std::string CheckIndex;
 	while (i <= 8)
 	{
 		std::getline (std::cin, check_val);
@@ -69,17 +69,17 @@ int main()
 			}
 			std::cout << "Please type an index of a contact: \n";
 			std::cin >> CheckIndex;
-			if (atoi(CheckIndex) > 0 && atoi(CheckIndex) <= k)
+			if (CheckIndex.length() == 1 && CheckIndex[0] - 48 > 0 && CheckIndex[0] - 48 <= k)
 			{
-				std::cout << "First Name: " << phonebook.contacts[atoi(CheckIndex) - 1].GetFirstName() << "\n";
-				std::cout << "Last Name: " << phonebook.contacts[atoi(CheckIndex) - 1].GetLastName() << "\n";
-				std::cout << "Nick Name: " << phonebook.contacts[atoi(CheckIndex) - 1].GetNickName() << "\n";
-				std::cout << "Phone number: " << phonebook.contacts[atoi(CheckIndex) - 1].GetPhoneNumber() << "\n";
-				std::cout << "Darkest Secret: " << phonebook.contacts[atoi(CheckIndex) - 1].GetDarkestSecret() << "\n";
-				std::cout << "Index: " << phonebook.contacts[atoi(CheckIndex) - 1].index << "\n";
+				std::cout << "First Name: " << phonebook.contacts[CheckIndex[0] - 49].GetFirstName() << "\n";
+				std::cout << "Last Name: " << phonebook.contacts[CheckIndex[0] - 49].GetLastName() << "\n";
+				std::cout << "Nick Name: " << phonebook.contacts[CheckIndex[0] - 49].GetNickName() << "\n";
+				std::cout << "Phone number: " << phonebook.contacts[CheckIndex[0] - 49].GetPhoneNumber() << "\n";
+				std::cout << "Darkest Secret: " << phonebook.contacts[CheckIndex[0] - 49].GetDarkestSecret() << "\n";
+				std::cout << "Index: " << phonebook.contacts[CheckIndex[0] - 49].index << "\n";
 			}
 			else
-				std::cout << "Invalid range\n";
+				std::cout << "Invalid\n";
 		}
 		else if (check_val == "EXIT")
 			exit (EXIT_SUCCESS);

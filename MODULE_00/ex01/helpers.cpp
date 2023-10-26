@@ -1,24 +1,24 @@
-#include "phonebook.hpp"
+#include "PhoneBook.hpp"
 
 void CheckIndex(std::string CheckIn, PhoneBook phonebook, int k)
 {
+	std::cout << "Please type an index of a contact: \n";
 	while (1)
 	{
-		std::cout << "Please type an index of a contact: \n";
 		std::cin >> CheckIn;
 		if (CheckIn.length() == 1 && CheckIn[0] - 48 > 0 && CheckIn[0] - 48 <= k)
 		{
-			std::cout << "First Name: " << phonebook.contacts[CheckIn[0] - 49].GetFirstName() << "\n";
-			std::cout << "Last Name: " << phonebook.contacts[CheckIn[0] - 49].GetLastName() << "\n";
-			std::cout << "Nick Name: " << phonebook.contacts[CheckIn[0] - 49].GetNickName() << "\n";
-			std::cout << "Phone number: " << phonebook.contacts[CheckIn[0] - 49].GetPhoneNumber() << "\n";
-			std::cout << "Darkest Secret: " << phonebook.contacts[CheckIn[0] - 49].GetDarkestSecret() << "\n";
-			std::cout << "Index: " << phonebook.contacts[CheckIn[0] - 49].index << "\n";
+			std::cout << "First Name: " << phonebook.GetContact(CheckIn[0] - 49).GetFirstName() << "\n";
+			std::cout << "Last Name: " << phonebook.GetContact(CheckIn[0] - 49).GetLastName() << "\n";
+			std::cout << "Nick Name: " << phonebook.GetContact(CheckIn[0] - 49).GetNickName() << "\n";
+			std::cout << "Phone number: " << phonebook.GetContact(CheckIn[0] - 49).GetPhoneNumber() << "\n";
+			std::cout << "Darkest Secret: " << phonebook.GetContact(CheckIn[0] - 49).GetDarkestSecret() << "\n";
+			std::cout << "Index: " << phonebook.GetContact(CheckIn[0] - 49).GetIndex() << "\n";
 			break;
 		}
 		else
 		{
-			std::cout << "Invalid index.\n";
+			std::cout << "Invalid index, try again:\n";
 			continue;
 		}
 	}

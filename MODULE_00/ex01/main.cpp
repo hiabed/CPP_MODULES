@@ -1,4 +1,4 @@
-#include "phonebook.hpp"
+#include "PhoneBook.hpp"
 
 int main()
 {
@@ -37,8 +37,8 @@ int main()
 				contact.SetDarkestSecret(DarkestSecret);
 			if(i == 8)
 				i = 0;
-			contact.index = i + 1;
-			phonebook.contacts[i] = contact;
+			contact.SetIndex(i);
+			phonebook.SetContact(contact, i);
 			if (k < 8)
 				k++;
 			i++;
@@ -49,19 +49,19 @@ int main()
 			int j = 0;
 			while (j < k)
 			{
-				std::cout << "| " << std::setw(10) << phonebook.contacts[j].index << "| ";
-				if (phonebook.contacts[j].GetFirstName().length() > 10)
-					std::cout << phonebook.contacts[j].GetFirstName().substr(0, 9) << ".| ";
+				std::cout << "| " << std::setw(10) << phonebook.GetContact(j).GetIndex() << "| ";
+				if (phonebook.GetContact(j).GetFirstName().length() > 10)
+					std::cout << phonebook.GetContact(j).GetFirstName().substr(0, 9) << ".| ";
 				else
-					std::cout << std::setw(10) << phonebook.contacts[j].GetFirstName() << "| ";
-				if (phonebook.contacts[j].GetLastName().length() > 10)
-					std::cout << phonebook.contacts[j].GetLastName().substr(0, 9) << ".| ";
+					std::cout << std::setw(10) << phonebook.GetContact(j).GetFirstName() << "| ";
+				if (phonebook.GetContact(j).GetLastName().length() > 10)
+					std::cout << phonebook.GetContact(j).GetLastName().substr(0, 9) << ".| ";
 				else
-					std::cout << std::setw(10) << phonebook.contacts[j].GetLastName() << "| ";
-				if (phonebook.contacts[j].GetNickName().length() > 10)
-					std::cout << phonebook.contacts[j].GetNickName().substr(0, 9) << ".|\n";
+					std::cout << std::setw(10) << phonebook.GetContact(j).GetLastName() << "| ";
+				if (phonebook.GetContact(j).GetNickName().length() > 10)
+					std::cout << phonebook.GetContact(j).GetNickName().substr(0, 9) << ".|\n";
 				else
-					std::cout << std::setw(10) << phonebook.contacts[j].GetNickName() << "|\n";
+					std::cout << std::setw(10) << phonebook.GetContact(j).GetNickName() << "|\n";
 				j++;
 			}
 			CheckIndex(CheckIn, phonebook, k);

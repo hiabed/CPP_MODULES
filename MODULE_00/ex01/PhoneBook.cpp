@@ -1,51 +1,11 @@
-#include "phonebook.hpp"
+#include "PhoneBook.hpp"
 
-void Contact::SetFirstName(std::string FirstName)
+void PhoneBook::SetContact(Contact contact, int i)
 {
-    _FirstName = FirstName;
+    _contacts[i] = contact;
 }
 
-void Contact::SetLastName(std::string LastName)
+Contact PhoneBook::GetContact(int i)
 {
-    _LastName = LastName;
-}
-
-void Contact::SetNickName(std::string	NickName)
-{
-    _NickName = NickName;
-}
-
-void Contact::SetPhoneNumber(std::string PhoneNumber)
-{
-    _PhoneNumber = PhoneNumber;
-}
-
-void Contact::SetDarkestSecret(std::string	DarkestSecret)
-{
-    _DarkestSecret = DarkestSecret;
-}
-
-std::string Contact::GetFirstName()
-{
-    return _FirstName;
-}
-
-std::string Contact::GetLastName()
-{
-    return _LastName;
-}
-
-std::string Contact::GetNickName()
-{
-    return _NickName;
-}
-
-std::string Contact::GetPhoneNumber()
-{
-    return _PhoneNumber;
-}
-
-std::string Contact::GetDarkestSecret()
-{
-    return _DarkestSecret;
+    return _contacts[i];
 }

@@ -2,7 +2,7 @@ NAME = phonebook
 
 CC = c++
 
-CXXFLAGS = -Wall -Wextra -Werror #-std=c++98
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 CXXFILES = main.cpp Contact.cpp helpers.cpp PhoneBook.cpp\
 

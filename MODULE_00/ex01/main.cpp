@@ -4,13 +4,7 @@ int main()
 {
 	Contact contact;
 	PhoneBook phonebook;
-	std::string PhoneNum;
-	std::string check_val;
-	std::string FirstName;
-	std::string LastName;
-	std::string NickName;
-	std::string DarkestSecret;
-	std::string CheckIn;
+	std::string str;
 	std::cout << "****  use 'ADD' command to add a contact to the phonebook  *****.\n";
 	std::cout << "****  use 'SEARCH' command to search for a specific contact  ***.\n";
 	std::cout << "****  use 'EXIT' command to EXIT from the phonebook program  ***.\n";
@@ -18,23 +12,23 @@ int main()
 	int k = 0;
 	while (i <= 8)
 	{
-		std::getline (std::cin, check_val);
-		if (check_val == "ADD")
+		std::getline (std::cin, str);
+		if (str == "ADD")
 		{
 			std::cout << "First Name: \n";
-			if (CheckEmptyField(FirstName))
-				contact.SetFirstName(FirstName);
+			if (CheckEmptyField(str))
+				contact.SetFirstName(str);
 			std::cout << "Last Name: \n";
-			if (CheckEmptyField(LastName))
-				contact.SetLastName(LastName);
+			if (CheckEmptyField(str))
+				contact.SetLastName(str);
 			std::cout << "Nick Name: \n";
-			if (CheckEmptyField(NickName))
-				contact.SetNickName(NickName);
-			if (CheckPhoneNumber(PhoneNum))
-				contact.SetPhoneNumber(PhoneNum);
+			if (CheckEmptyField(str))
+				contact.SetNickName(str);
+			if (CheckPhoneNumber(str))
+				contact.SetPhoneNumber(str);
 			std::cout << "Darkest Secrect: \n";
-			if (CheckEmptyField(DarkestSecret))
-				contact.SetDarkestSecret(DarkestSecret);
+			if (CheckEmptyField(str))
+				contact.SetDarkestSecret(str);
 			if(i == 8)
 				i = 0;
 			contact.SetIndex(i);
@@ -43,7 +37,7 @@ int main()
 				k++;
 			i++;
 		}
-		else if (check_val == "SEARCH")
+		else if (str == "SEARCH")
 		{
 			std::cout << "| " << std::setw(10) << "index" << "| " << std::setw(10) << "First Name" << "| " << std::setw(10) << "Last Name" << "| " << std::setw(10) << "NickName" << "|\n";
 			int j = 0;
@@ -64,9 +58,9 @@ int main()
 					std::cout << std::setw(10) << phonebook.GetContact(j).GetNickName() << "|\n";
 				j++;
 			}
-			CheckIndex(CheckIn, phonebook, k);
+			CheckIndex(str, phonebook, k);
 		}
-		else if (check_val == "EXIT")
+		else if (str == "EXIT")
 			exit (EXIT_SUCCESS);
 	}
 }

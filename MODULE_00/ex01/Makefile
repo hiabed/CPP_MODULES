@@ -4,7 +4,7 @@ CC = c++
 
 CXXFLAGS = -Wall -Wextra -Werror #-std=c++98
 
-CXXFILES = PhoneBook.cpp main.cpp\
+CXXFILES = PhoneBook.cpp main.cpp helpers.cpp\
 
 OBJ = ${CXXFILES:.cpp=.o}
 

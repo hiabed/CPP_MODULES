@@ -1,10 +1,10 @@
 #ifndef PHONEBOOK_HPP
 # define PHONEBOOK_HPP
 
+# include <cstdlib>
+# include <iomanip>
 # include <iostream>
 # include <string>
-#include <cstdlib>
-#include <iomanip>
 
 class Contact
 {
@@ -33,5 +33,10 @@ class PhoneBook
   public:
 	Contact contacts[8];
 };
+
+void	CheckIndex(std::string CheckIn, PhoneBook phonebook, int k);
+int	CheckEmptyField(std::string &Field);
+int	CheckPhoneNumber(std::string &PhoneNum);
+
 
 #endif

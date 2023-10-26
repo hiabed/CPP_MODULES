@@ -1,17 +1,17 @@
 NAME = phonebook
 
-CC = g++
+CC = c++
 
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+CXXFLAGS = -Wall -Wextra -Werror #-std=c++98
 
-CFILES = PhoneBook.cpp main.cpp\
+CXXFILES = PhoneBook.cpp main.cpp\
 
-OBJ = ${CFILES:.cpp=.o}
+OBJ = ${CXXFILES:.cpp=.o}
 
 all: ${NAME}
 
 ${NAME}: ${OBJ}
-	${CC} ${CFLAGS} ${OBJ} -o ${NAME}
+	${CC} ${CXXFLAGS} ${OBJ} -o ${NAME}
 
 clean:
 	rm -f ${OBJ}

@@ -1,50 +1,105 @@
 #include "phonebook.hpp"
 
+void CheckIndex(std::string CheckIn, PhoneBook phonebook, int k)
+{
+	while (1)
+	{
+		std::cout << "Please type an index of a contact: \n";
+		std::cin >> CheckIn;
+		if (CheckIn.length() == 1 && CheckIn[0] - 48 > 0 && CheckIn[0] - 48 <= k)
+		{
+			std::cout << "First Name: " << phonebook.contacts[CheckIn[0] - 49].GetFirstName() << "\n";
+			std::cout << "Last Name: " << phonebook.contacts[CheckIn[0] - 49].GetLastName() << "\n";
+			std::cout << "Nick Name: " << phonebook.contacts[CheckIn[0] - 49].GetNickName() << "\n";
+			std::cout << "Phone number: " << phonebook.contacts[CheckIn[0] - 49].GetPhoneNumber() << "\n";
+			std::cout << "Darkest Secret: " << phonebook.contacts[CheckIn[0] - 49].GetDarkestSecret() << "\n";
+			std::cout << "Index: " << phonebook.contacts[CheckIn[0] - 49].index << "\n";
+			break;
+		}
+		else
+		{
+			std::cout << "Invalid index.\n";
+			continue;
+		}
+	}
+}
+
+int	CheckEmptyField(std::string &Field)
+{
+	int i = 0;
+	while (1)
+	{
+		std::getline (std::cin, Field);
+		if (Field.empty())
+		{
+			std::cout << "Field's empty, try again:\n";
+			continue;
+		}
+		else
+		{
+			while (Field[i] && (Field[i] == ' ' || Field[i] == '\t' || Field[i] == '\n'))
+				i++;
+			if(!Field[i])
+				std::cout << "Field's empty, try again:\n";
+			else
+				return 1;
+		}
+	}
+}
+
+int	CheckPhoneNumber(std::string &PhoneNum)
+{
+	std::cout << "Phone Number: \n";
+	while (1)
+	{
+		std::getline (std::cin, PhoneNum);
+		int j = 0;
+		while (isdigit(PhoneNum[j]))
+			j++;
+		if (PhoneNum[j] != '\0')
+		{
+			std::cout << "invalid, try again:\n";
+			continue;
+		}
+		return 1;
+	}
+}
+
 int main()
 {
 	Contact contact;
 	PhoneBook phonebook;
+	std::string PhoneNum;
 	std::string check_val;
 	std::string FirstName;
 	std::string LastName;
 	std::string NickName;
-	std::string PhoneNumber;
 	std::string DarkestSecret;
+	std::string CheckIn;
+	std::cout << "****  use 'ADD' command to add a contact to the phonebook  *****.\n";
+	std::cout << "****  use 'SEARCH' command to search for a specific contact  ***.\n";
+	std::cout << "****  use 'EXIT' command to EXIT from the phonebook program  ***.\n";
 	int i = 0;
 	int k = 0;
-	std::string CheckIndex;
 	while (i <= 8)
 	{
 		std::getline (std::cin, check_val);
 		if (check_val == "ADD")
 		{
 			std::cout << "First Name: \n";
-			std::getline (std::cin, FirstName);
-			contact.SetFirstName(FirstName);
+			if (CheckEmptyField(FirstName))
+				contact.SetFirstName(FirstName);
 			std::cout << "Last Name: \n";
-			std::getline (std::cin, LastName);
-			contact.SetLastName(LastName);
+			if (CheckEmptyField(LastName))
+				contact.SetLastName(LastName);
 			std::cout << "Nick Name: \n";
-			std::getline (std::cin, NickName);
-			contact.SetNickName(NickName);
-			while (1)
-			{
-				std::cout << "Phone Number: \n";
-				std::getline (std::cin, PhoneNumber);
-				int j = 0;
-				while (isdigit(PhoneNumber[j]))
-					j++;
-				if(PhoneNumber[j] != '\0')
-				{
-					std::cout << "Invalid input. You should enter only digits in this field.\n";
-					continue;
-				}
-				contact.SetPhoneNumber(PhoneNumber);
-				break;
-			}
+			if (CheckEmptyField(NickName))
+				contact.SetNickName(NickName);
+			if (CheckPhoneNumber(PhoneNum))
+				contact.SetPhoneNumber(PhoneNum);
 			std::cout << "Darkest Secrect: \n";
-			std::getline (std::cin, DarkestSecret);
-			contact.SetDarkestSecret(DarkestSecret);
+			if (CheckEmptyField(DarkestSecret))
+				contact.SetDarkestSecret(DarkestSecret);
 			if(i == 8)
 				i = 0;
 			contact.index = i + 1;
@@ -55,31 +110,26 @@ int main()
 		}
 		else if (check_val == "SEARCH")
 		{
+			std::cout << "| " << std::setw(10) << "index" << "| " << std::setw(10) << "First Name" << "| " << std::setw(10) << "Last Name" << "| " << std::setw(10) << "NickName" << "|\n";
 			int j = 0;
 			while (j < k)
 			{
-				if(phonebook.contacts[j].GetFirstName()[0] != '\0')
-				{
-					std::cout << "| " << phonebook.contacts[j].index << " | ";
-					std::cout << phonebook.contacts[j].GetFirstName().substr(0, 10) << "	| ";
-					std::cout << phonebook.contacts[j].GetLastName().substr(0, 10) << "	| ";
-					std::cout << phonebook.contacts[j].GetNickName().substr(0, 10) << "	|\n";
-				}
+				std::cout << "| " << std::setw(10) << phonebook.contacts[j].index << "| ";
+				if (phonebook.contacts[j].GetFirstName().length() > 10)
+					std::cout << phonebook.contacts[j].GetFirstName().substr(0, 9) << ".| ";
+				else
+					std::cout << std::setw(10) << phonebook.contacts[j].GetFirstName() << "| ";
+				if (phonebook.contacts[j].GetLastName().length() > 10)
+					std::cout << phonebook.contacts[j].GetLastName().substr(0, 9) << ".| ";
+				else
+					std::cout << std::setw(10) << phonebook.contacts[j].GetLastName() << "| ";
+				if (phonebook.contacts[j].GetNickName().length() > 10)
+					std::cout << phonebook.contacts[j].GetNickName().substr(0, 9) << ".|\n";
+				else
+					std::cout << std::setw(10) << phonebook.contacts[j].GetNickName() << "|\n";
 				j++;
 			}
-			std::cout << "Please type an index of a contact: \n";
-			std::cin >> CheckIndex;
-			if (CheckIndex.length() == 1 && CheckIndex[0] - 48 > 0 && CheckIndex[0] - 48 <= k)
-			{
-				std::cout << "First Name: " << phonebook.contacts[CheckIndex[0] - 49].GetFirstName() << "\n";
-				std::cout << "Last Name: " << phonebook.contacts[CheckIndex[0] - 49].GetLastName() << "\n";
-				std::cout << "Nick Name: " << phonebook.contacts[CheckIndex[0] - 49].GetNickName() << "\n";
-				std::cout << "Phone number: " << phonebook.contacts[CheckIndex[0] - 49].GetPhoneNumber() << "\n";
-				std::cout << "Darkest Secret: " << phonebook.contacts[CheckIndex[0] - 49].GetDarkestSecret() << "\n";
-				std::cout << "Index: " << phonebook.contacts[CheckIndex[0] - 49].index << "\n";
-			}
-			else
-				std::cout << "Invalid\n";
+			CheckIndex(CheckIn, phonebook, k);
 		}
 		else if (check_val == "EXIT")
 			exit (EXIT_SUCCESS);

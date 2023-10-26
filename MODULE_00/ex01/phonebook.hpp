@@ -4,10 +4,10 @@
 # include <iostream>
 # include <string>
 #include <cstdlib>
+#include <iomanip>
 
 class Contact
 {
-	int _index;
 	std::string _FirstName;
 	std::string _LastName;
 	std::string _NickName;

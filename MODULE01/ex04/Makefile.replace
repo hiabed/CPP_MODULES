@@ -1,0 +1,22 @@
+NAAME = replace
+
+CXX = c++
+
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+
+CXXFILES = main.cpp \
+
+OBJ = ${CXXFILES:.cpp=.o}
+
+all: ${NAAME}
+
+${NAAME}: ${OBJ}
+	${CXX} ${CXXFLAGS} ${OBJ} -o ${NAAME}
+
+clean:
+	rm -f ${OBJ}
+
+fclean: clean
+	rm -f ${NAAME}
+
+re: fclean all
